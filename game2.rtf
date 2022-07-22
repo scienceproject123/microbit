@@ -1,136 +1,135 @@
 
-    while True:\
-        music.play_melody("G A F C G B A E ", 100)\
-control.in_background(on_in_background)\
-def blink():\
-    car.set(LedSpriteProperty.BLINK, 400)\
-    basic.pause(3000)\
-    car.set(LedSpriteProperty.BLINK, 0)\
-def moviment():\
-    if input.acceleration(Dimension.X) > 100:\
-        hero.change(LedSpriteProperty.X, 1)\
-    elif input.acceleration(Dimension.X) < -100:\
-        hero.change(LedSpriteProperty.X, -1)\
-    if input.acceleration(Dimension.Y) > 100:\
+while True:
+        music.play_melody("G A F C G B A E ", 100)
+control.in_background(on_in_background)
+def blink():
+    car.set(LedSpriteProperty.BLINK, 400)
+    basic.pause(3000)
+    car.set(LedSpriteProperty.BLINK, 0)
+def moviment():
+    if input.acceleration(Dimension.X) > 100:
+        hero.change(LedSpriteProperty.X, 1)
+    elif input.acceleration(Dimension.X) < -100:
+        hero.change(LedSpriteProperty.X, -1)
+    if input.acceleration(Dimension.Y) > 100:
         hero.change(LedSpriteProperty.Y, 1)\
-    elif input.acceleration(Dimension.Y) > -10:\
-        hero.change(LedSpriteProperty.Y, -1)\
-\
-def showdeth():\
-    dethshow = randint(0, 4)\
-    if dethshow == 0:\
+    elif input.acceleration(Dimension.Y) > -10:
+        hero.change(LedSpriteProperty.Y, -1)
+
+def showdeth():
+    dethshow = randint(0, 4)
+    if dethshow == 0:
         basic.show_string("1 curiosity.  Liberdade the Japanese part of the city, where the streets are decorated with lanternz Bairro da Liberdade is home to the largest Japanese colony in the world, outside Japan. The arrival of the Japanese to S\'e3o Paulo began in 1912, when immigrants began to reside on Rua Conde de Sarzedas. From there, businesses were created, such as inns and specialized stores.",\
-            95)\
-    elif dethshow == 1:\
+            95)
+    elif dethshow == 1:
         basic.show_string("2 curiosity.  S\'e3o Paulo concentrates the largest number of Japanese, Lebanese and Italians outside their respective countries of origin. The population of Japanese and their descendants in the capital alone is estimated at nearly 40,000.!",\
-            95)\
-    elif dethshow == 2:\
+            95)
+    elif dethshow == 2:
         basic.show_string("3 curiosity.  In S\'e3o Paulo, there are about 3 indigenous villages: the Guarani tribe, Tenond\'ea Por\'e3 and Krukutu, located respectively on Pico do Jaragu\'e1 and in a reserve in the Parelheiros district.",\
-            95)\
-    elif dethshow == 3:\
+            95)
+    elif dethshow == 3:
         basic.show_string("4 curiosity   The city of S\'e3o Paulo appears in 4th position in the ranking of the largest cities in the world with 12.33 million (2020)",\
-            95)\
-    elif dethshow == 4:\
+            95)
+    elif dethshow == 4:
         basic.show_string("5 curiosity   S\'e3o Paulo has the biggest lgbt parade in the whole world with the participation of more than 4 million people per year",\
-            95)\
-def death():\
+            95)
+def death():
     if hero.is_touching(car):\
-        music.play_melody("C5 B A G F E D C ", 222)\
-        showdeth()\
-        game.game_over()\
-def boss():\
-    carB1 = game.create_sprite(randint(0, 4), 0)\
-    carB2 = game.create_sprite(randint(0, 4), 0)\
-    carB3 = game.create_sprite(0, randint(0, 4))\
-    carB4 = game.create_sprite(0, randint(0, 4))\
-    carB1.set(LedSpriteProperty.BLINK, 400)\
-    carB2.set(LedSpriteProperty.BLINK, 400)\
-    carB3.set(LedSpriteProperty.BLINK, 400)\
-    carB4.set(LedSpriteProperty.BLINK, 400)\
-    basic.pause(3000)\
-    carB1.set(LedSpriteProperty.BLINK, 0)\
-    carB2.set(LedSpriteProperty.BLINK, 0)\
-    carB3.set(LedSpriteProperty.BLINK, 0)\
-    carB4.set(LedSpriteProperty.BLINK, 0)\
-    while True:\
-        moviment()\
-        basic.pause(300)\
-        carB1.change(LedSpriteProperty.Y, 1)\
-        carB2.change(LedSpriteProperty.Y, 1)\
-        carB3.change(LedSpriteProperty.X, 1)\
-        carB4.change(LedSpriteProperty.X, 1)\
-        if carB1.get(LedSpriteProperty.Y) == 4 or carB2.get(LedSpriteProperty.Y) == 4 or carB3.get(LedSpriteProperty.X) == 4 or carB4.get(LedSpriteProperty.X) == 4:\
-            game.add_score(1)\
-            carB1.delete()\
-            carB2.delete()\
-            carB3.delete()\
-            carB4.delete()\
-            carB1 = game.create_sprite(randint(0, 4), 0)\
-            carB2 = game.create_sprite(randint(0, 4), 0)\
-            carB3 = game.create_sprite(0, randint(0, 4))\
-            carB4 = game.create_sprite(0, randint(0, 4))\
-            music.play_melody("C C E E G G B B ", 185)\
-        if hero.is_touching(carB1) or hero.is_touching(carB2) or hero.is_touching(carB3) or hero.is_touching(carB4):\
-            music.play_melody("C5 B A G F E D C ", 222)\
-            showdeth()\
-            game.game_over()\
-        if game.score() > 8:\
-            music.play_melody("C C E E G G B B ", 650)\
-            basic.show_string("congratulations you beat the traffic ;)")\
-            game.game_over()\
-basic.show_string("Welcome to phase 2", 95)\
-hero = game.create_sprite(2, 2)\
-car = game.create_sprite(0, randint(0, 4))\
-blink()\
-while True:\
-    basic.pause(300)\
-    moviment()\
-    car.change(LedSpriteProperty.X, 1)\
-    death()\
-    if car.get(LedSpriteProperty.X) == 4:\
-        music.play_melody("- G - F - E F A ", 392)\
-        basic.pause(500)\
-        game.add_score(1)\
-        car.delete()\
-        car = game.create_sprite(randint(0, 4), 0)\
-        blink()\
-        while True:\
-            basic.pause(300)\
-            moviment()\
-            death()\
-            car.change(LedSpriteProperty.Y, 1)\
-            if car.get(LedSpriteProperty.Y) == 4:\
-                music.play_melody("- G - F - E F A ", 392)\
-                basic.pause(500)\
-                game.add_score(1)\
-                car.delete()\
-                car = game.create_sprite(randint(0, 4), 0)\
-                car1 = game.create_sprite(0, randint(0, 4))\
-                car1.set(LedSpriteProperty.BLINK, 400)\
-                blink()\
-                car1.set(LedSpriteProperty.BLINK, 0)\
-                while game.score() < 6:\
-                    basic.pause(300)\
-                    car1.change(LedSpriteProperty.X, 1)\
-                    car.change(LedSpriteProperty.Y, 1)\
-                    moviment()\
-                    death()\
-                    if hero.is_touching(car1):\
-                        music.play_melody("C5 B A G F E D C ", 222)\
-                        showdeth()\
-                        game.game_over()\
-                    if car.get(LedSpriteProperty.Y) == 4 and car1.get(LedSpriteProperty.X) == 4:\
-                        music.play_melody("- G - F - E F A ", 392)\
-                        basic.pause(500)\
-                        game.add_score(1)\
-                        car1.delete()\
-                        car.delete()\
-                        car = game.create_sprite(randint(0, 4), 0)\
-                        car1 = game.create_sprite(0, randint(0, 4))\
-                        car1.set(LedSpriteProperty.BLINK, 400)\
-                        blink()\
-                        car1.set(LedSpriteProperty.BLINK, 0)\
-                music.play_melody("C C E E G G B B ", 185)\
-                basic.show_string("BOSS!")\
-                boss()\
-}
+        music.play_melody("C5 B A G F E D C ", 222)
+        showdeth()
+        game.game_over()
+def boss():
+    carB1 = game.create_sprite(randint(0, 4), 0)
+    carB2 = game.create_sprite(randint(0, 4), 0)
+    carB3 = game.create_sprite(0, randint(0, 4))
+    carB4 = game.create_sprite(0, randint(0, 4))
+    carB1.set(LedSpriteProperty.BLINK, 400)
+    carB2.set(LedSpriteProperty.BLINK, 400)
+    carB3.set(LedSpriteProperty.BLINK, 400)
+    carB4.set(LedSpriteProperty.BLINK, 400)
+    basic.pause(3000)
+    carB1.set(LedSpriteProperty.BLINK, 0)
+    carB2.set(LedSpriteProperty.BLINK, 0)
+    carB3.set(LedSpriteProperty.BLINK, 0)
+    carB4.set(LedSpriteProperty.BLINK, 0)
+    while True:
+        moviment()
+        basic.pause(300)
+        carB1.change(LedSpriteProperty.Y, 1)
+        carB2.change(LedSpriteProperty.Y, 1)
+        carB3.change(LedSpriteProperty.X, 1)
+        carB4.change(LedSpriteProperty.X, 1)
+        if carB1.get(LedSpriteProperty.Y) == 4 or carB2.get(LedSpriteProperty.Y) == 4 or carB3.get(LedSpriteProperty.X) == 4 or carB4.get(LedSpriteProperty.X) == 4:
+            game.add_score(1)
+            carB1.delete()
+            carB2.delete()
+            carB3.delete()
+            carB4.delete()
+            carB1 = game.create_sprite(randint(0, 4), 0)
+            carB2 = game.create_sprite(randint(0, 4), 0)
+            carB3 = game.create_sprite(0, randint(0, 4))
+            carB4 = game.create_sprite(0, randint(0, 4))
+            music.play_melody("C C E E G G B B ", 185)
+        if hero.is_touching(carB1) or hero.is_touching(carB2) or hero.is_touching(carB3) or hero.is_touching(carB4):
+            music.play_melody("C5 B A G F E D C ", 222)
+            showdeth()
+            game.game_over()
+        if game.score() > 8:
+            music.play_melody("C C E E G G B B ", 650)
+            basic.show_string("congratulations you beat the traffic ;)")
+            game.game_over()
+basic.show_string("Welcome to phase 2", 95)
+hero = game.create_sprite(2, 2)
+car = game.create_sprite(0, randint(0, 4))
+blink()
+while True:
+    basic.pause(300)
+    moviment()
+    car.change(LedSpriteProperty.X, 1)
+    death()
+    if car.get(LedSpriteProperty.X) == 4:
+        music.play_melody("- G - F - E F A ", 392)
+        basic.pause(500)
+        game.add_score(1)
+        car.delete()
+        car = game.create_sprite(randint(0, 4), 0)
+        blink()
+        while True:
+            basic.pause(300)
+            moviment()
+            death()
+            car.change(LedSpriteProperty.Y, 1)
+            if car.get(LedSpriteProperty.Y) == 4:
+                music.play_melody("- G - F - E F A ", 392)
+                basic.pause(500)
+                game.add_score(1)
+                car.delete()
+                car = game.create_sprite(randint(0, 4), 0)
+                car1 = game.create_sprite(0, randint(0, 4))
+                car1.set(LedSpriteProperty.BLINK, 400)
+                blink()
+                car1.set(LedSpriteProperty.BLINK, 0)
+                while game.score() < 6:
+                    basic.pause(300)
+                    car1.change(LedSpriteProperty.X, 1)
+                    car.change(LedSpriteProperty.Y, 1)
+                    moviment()
+                    death()
+                    if hero.is_touching(car1):
+                        music.play_melody("C5 B A G F E D C ", 222)
+                        showdeth()
+                        game.game_over()
+                    if car.get(LedSpriteProperty.Y) == 4 and car1.get(LedSpriteProperty.X) == 4:
+                        music.play_melody("- G - F - E F A ", 392)
+                        basic.pause(500)
+                        game.add_score(1)
+                        car1.delete()
+                        car.delete()
+                        car = game.create_sprite(randint(0, 4), 0)
+                        car1 = game.create_sprite(0, randint(0, 4))
+                        car1.set(LedSpriteProperty.BLINK, 400)
+                        blink()
+                        car1.set(LedSpriteProperty.BLINK, 0)
+                music.play_melody("C C E E G G B B ", 185)
+                basic.show_string("BOSS!")
+                boss()
