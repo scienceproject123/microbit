@@ -1,0 +1,113 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red199\green200\blue201;\red22\green21\blue22;}
+{\*\expandedcolortbl;;\cssrgb\c81961\c82353\c82745;\cssrgb\c11373\c10980\c11373\c3922;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ef on_in_background():\
+    while True:\
+        music.play_melody("G A F C G B A E ", 100)\
+control.in_background(on_in_background)\
+def showdeth():\
+    dethshow = randint(0,4)\
+    if dethshow == 0:\
+        basic.show_string("1 curiosity.  Liberdade the Japanese part of the city, where the streets are decorated with lanternz Bairro da Liberdade is home to the largest Japanese colony in the world, outside Japan. The arrival of the Japanese to S\'e3o Paulo began in 1912, when immigrants began to reside on Rua Conde de Sarzedas. From there, businesses were created, such as inns and specialized stores.", 95)\
+    elif dethshow == 1:\
+        basic.show_string("2 curiosity.  S\'e3o Paulo concentrates the largest number of Japanese, Lebanese and Italians outside their respective countries of origin. The population of Japanese and their descendants in the capital alone is estimated at nearly 40,000.!", 95)\
+    elif dethshow == 2:\
+        basic.show_string("3 curiosity.  In S\'e3o Paulo, there are about 3 indigenous villages: the Guarani tribe, Tenond\'ea Por\'e3 and Krukutu, located respectively on Pico do Jaragu\'e1 and in a reserve in the Parelheiros district.", 95)\
+    elif dethshow == 3:\
+        basic.show_string("4 curiosity   The city of S\'e3o Paulo appears in 4th position in the ranking of the largest cities in the world with 12.33 million (2020)", 95)\
+    elif dethshow == 4:\
+        basic.show_string("5 curiosity   S\'e3o Paulo has the biggest lgbt parade in the whole world with the participation of more than 4 million people per year", 95)\
+#SPRITES\
+hero = game.create_sprite(0, 0)\
+hero.set(LedSpriteProperty.BRIGHTNESS, 180)\
+#MAKEFLOOR\
+floor3 = game.create_sprite(3, 4)\
+fall = game.create_sprite(2, 4)\
+floor4 = game.create_sprite(4, 4)\
+floor1 = game.create_sprite(1, 4)\
+floor = game.create_sprite(0, 4)\
+flag = game.create_sprite(4, 3)\
+flag.set(LedSpriteProperty.BLINK, 600)\
+#OVER\
+fall.set(LedSpriteProperty.BRIGHTNESS, 1)\
+    \
+#SPRITESofGRAVITY\
+gravity4 = game.create_sprite(4, 3)\
+gravity3 = game.create_sprite(3, 3)\
+gravity1 = game.create_sprite(1, 3)\
+gravity = game.create_sprite(0, 3)\
+#BRIGHTNESSofGRAVITY\
+gravity.set(LedSpriteProperty.BRIGHTNESS, 1)\
+gravity1.set(LedSpriteProperty.BRIGHTNESS, 1)\
+gravity3.set(LedSpriteProperty.BRIGHTNESS, 1)\
+gravity4.set(LedSpriteProperty.BRIGHTNESS, 1)\
+#GRAVITYnowWORKING\
+def on_button_pressed_a():\
+    hero.change(LedSpriteProperty.X, -1)\
+input.on_button_pressed(Button.A, on_button_pressed_a)\
+\
+def on_button_pressed_b():\
+    hero.change(LedSpriteProperty.X, 1)\
+input.on_button_pressed(Button.B, on_button_pressed_b)\
+\
+def on_gesture_shake():\
+    hero.change(LedSpriteProperty.Y, -3)\
+input.on_gesture(Gesture.SHAKE, on_gesture_shake)\
+while True:\
+    hero.change(LedSpriteProperty.Y, 1)\
+    basic.pause(300)\
+    if hero.is_touching(fall):\
+            music.play_melody("- G - F - E F A ", 392)\
+            showdeth()\
+            game.game_over()\
+            break\
+    if hero.is_touching(floor) or hero.is_touching(floor1) or hero.is_touching(floor3):\
+            music.play_melody("- G - F - E F A ", 392)\
+            showdeth()\
+            game.game_over()\
+    if hero.is_touching(gravity) or hero.is_touching(gravity1) or hero.is_touching(gravity3):\
+        hero.change(LedSpriteProperty.Y, -1)\
+    if hero.is_touching(floor4):\
+        music.play_melody("C5 B A G F E D C ", 222)\
+        hero.set(LedSpriteProperty.X,1)\
+        hero.set(LedSpriteProperty.Y,0)\
+        flag.set(LedSpriteProperty.Y,2)\
+        floor4.delete()\
+        floor4x = game.create_sprite(4, 3)\
+        floor3.set(LedSpriteProperty.X,4)\
+        floor3.set(LedSpriteProperty.Y,4)\
+        floor.set(LedSpriteProperty.X,1)\
+        floor.set(LedSpriteProperty.Y,3)\
+        gravity1.set(LedSpriteProperty.Y,2)\
+        gravity4.set(LedSpriteProperty.X,4)\
+        gravity4.set(LedSpriteProperty.Y,2)\
+        gravity3.delete()\
+        gravity.delete()\
+        fall1 = game.create_sprite(0, 4)\
+        fall2 = game.create_sprite(3, 4)\
+        fall1.set(LedSpriteProperty.BRIGHTNESS, 1)\
+        fall2.set(LedSpriteProperty.BRIGHTNESS, 1)\
+        game.add_score(1)\
+        while True:\
+            hero.change(LedSpriteProperty.Y, 1)\
+            basic.pause(300)\
+            if hero.is_touching(fall1) or hero.is_touching(fall2):\
+                music.play_melody("- G - F - E F A ", 392)\
+                showdeth()\
+                game.game_over()\
+            if hero.is_touching(floor) or hero.is_touching(floor1):\
+                        game.game_over()\
+            if hero.is_touching(gravity1) or hero.is_touching(floor3):\
+                hero.change(LedSpriteProperty.Y, -1)\
+            if hero.is_touching(floor4x):\
+                music.play_melody("C5 B A G F E D C ", 222)\
+                basic.show_string("Go to Phase 2 in my github!!!")\
+                showdeth()\
+                game.game_over()\
+}
