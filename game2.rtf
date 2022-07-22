@@ -1,5 +1,5 @@
-
-while True:
+def on_in_background():
+    while True:
         music.play_melody("G A F C G B A E ", 100)
 control.in_background(on_in_background)
 def blink():
@@ -7,31 +7,31 @@ def blink():
     basic.pause(3000)
     car.set(LedSpriteProperty.BLINK, 0)
 def moviment():
-    if input.acceleration(Dimension.X) > 100:
+    if input.acceleration(Dimension.X) > 200:
         hero.change(LedSpriteProperty.X, 1)
-    elif input.acceleration(Dimension.X) < -100:
+    elif input.acceleration(Dimension.X) < -200:
         hero.change(LedSpriteProperty.X, -1)
-    if input.acceleration(Dimension.Y) > 100:
+    if input.acceleration(Dimension.Y) > 200:
         hero.change(LedSpriteProperty.Y, 1)
-    elif input.acceleration(Dimension.Y) > -10:
+    elif input.acceleration(Dimension.Y) > -200:
         hero.change(LedSpriteProperty.Y, -1)
 
 def showdeth():
     dethshow = randint(0, 4)
     if dethshow == 0:
-        basic.show_string("1 curiosity.  Liberdade the Japanese part of the city, where the streets are decorated with lanternz Bairro da Liberdade is home to the largest Japanese colony in the world, outside Japan. The arrival of the Japanese to S\'e3o Paulo began in 1912, when immigrants began to reside on Rua Conde de Sarzedas. From there, businesses were created, such as inns and specialized stores.",\
+        basic.show_string("1 curiosity.  Liberdade the Japanese part of the city, where the streets are decorated with lanternz Bairro da Liberdade is home to the largest Japanese colony in the world, outside Japan. The arrival of the Japanese to São Paulo began in 1912, when immigrants began to reside on Rua Conde de Sarzedas. From there, businesses were created, such as inns and specialized stores.",
             95)
     elif dethshow == 1:
-        basic.show_string("2 curiosity.  São Paulo concentrates the largest number of Japanese, Lebanese and Italians outside their respective countries of origin. The population of Japanese and their descendants in the capital alone is estimated at nearly 40,000.!",\
+        basic.show_string("2 curiosity.  São Paulo concentrates the largest number of Japanese, Lebanese and Italians outside their respective countries of origin. The population of Japanese and their descendants in the capital alone is estimated at nearly 40,000.!",
             95)
     elif dethshow == 2:
-        basic.show_string("3 curiosity.  In São Paulo, there are about 3 indigenous villages: the Guarani tribe, Tenondê Porã and Krukutu located respectively on Pico do Jaragu\'e1 and in a reserve in the Parelheiros district.",\
+        basic.show_string("3 curiosity.  In São Paulo, there are about 3 indigenous villages: the Guarani tribe, Tenondê Porã and Krukutu, located respectively on Pico do Jaraguá and in a reserve in the Parelheiros district.",
             95)
     elif dethshow == 3:
-        basic.show_string("4 curiosity   The city of são Paulo appears in 4th position in the ranking of the largest cities in the world with 12.33 million (2020)",\
+        basic.show_string("4 curiosity   The city of São Paulo appears in 4th position in the ranking of the largest cities in the world with 12.33 million (2020)",
             95)
     elif dethshow == 4:
-        basic.show_string("5 curiosity   São Paulo has the biggest lgbt parade in the whole world with the participation of more than 4 million people per year",\
+        basic.show_string("5 curiosity   São Paulo has the biggest lgbt parade in the whole world with the participation of more than 4 million people per year",
             95)
 def death():
     if hero.is_touching(car):
